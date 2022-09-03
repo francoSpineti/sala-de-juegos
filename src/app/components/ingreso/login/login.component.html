@@ -1,0 +1,36 @@
+<div class="container">
+	<div class="screen">	
+		<div class="screen__content">
+			<form [formGroup]="formGroup" (ngSubmit)="login()">
+				<div class="login__field">
+					<i class="login__icon fas fa-user"></i>
+					<input type="email" id="inputEmail" class="login__input" formControlName="email" placeholder="User name / Email"><br>
+					<small class="invalid" *ngIf="formGroup.controls['email'].errors?.['required'] && formGroup.controls['email'].touched">El email es requerido</small>
+					<small class="invalid" *ngIf="formGroup.controls['email'].errors?.['email'] && formGroup.controls['email'].touched">El formato es invalido</small>
+				</div>
+				<div class="login__field">
+					<i class="login__icon fas fa-lock"></i>
+					<input type="password" id="inputPassword" formControlName="contraseña" class="login__input" placeholder="Password"><br>
+					<small class="invalid" *ngIf="formGroup.controls['contraseña'].errors?.['required'] && formGroup.controls['contraseña'].touched">La contraseña es requerida</small>
+				</div>
+				<button class="button login__submit" [disabled]="formGroup.invalid">
+					<span class="button__text">Ingresar</span>
+					<i class="button__icon fas fa-chevron-right"></i>
+				</button>				
+			</form>
+			<div class="social-login">
+				<button class="button login__submit" routerLink="/registro">
+					<span class="button__text">Registro</span>
+				</button>	
+				<div class="social-icons">
+				</div>
+			</div>
+		</div>
+		<div class="screen__background">
+			<span class="screen__background__shape screen__background__shape4"></span>
+			<span class="screen__background__shape screen__background__shape3"></span>		
+			<span class="screen__background__shape screen__background__shape2"></span>
+			<span class="screen__background__shape screen__background__shape1"></span>
+		</div>		
+	</div>
+</div>
