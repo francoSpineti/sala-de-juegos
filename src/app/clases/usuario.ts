@@ -1,19 +1,26 @@
 export class Usuario{
 
-    private id !: string;
-    private email !: string;
-    private contraseña !: string;
+    id !: string;
+    email !: string;
+    tag ?: string;
+    online ?: boolean;
+    foto ?: string;
 
-    constructor(id : string, email : string, contraseña : string){
+    constructor(id : string, email : string,tag ?: string, online ?: boolean,foto ?: string){
         this.id = id;
         this.email = email;
-        this.contraseña = contraseña;
+        this.tag = tag;
+        this.online = online;
+        this.foto = foto;
     }
 
     toJson():any{
         const json ={
             id : this.id,
-            email : this.email
+            email : this.email,
+            tag : this.tag,
+            online : this.online,
+            foto : this.foto
         }
         return json;
     }

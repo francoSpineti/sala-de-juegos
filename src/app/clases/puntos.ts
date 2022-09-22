@@ -4,10 +4,10 @@ export class Puntos{
 
     private id !: string;
     private nombreJuego !: string;
-    private usuario !: Usuario;
+    private usuario !: string;
     private puntaje !: number;
 
-    constructor(id : string, nombreJuego : string, usuario : Usuario, puntaje : number){
+    constructor(id : string, nombreJuego : string, usuario : string, puntaje : number){
         this.id = id,
         this.nombreJuego = nombreJuego,
         this.usuario = usuario,

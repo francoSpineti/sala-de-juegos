@@ -1,0 +1,77 @@
+<app-navbar></app-navbar>
+
+<main>
+
+    <section class="py-5 text-center container">
+      <div class="row py-lg-5">
+        <div class="col-lg-6 col-md-8 mx-auto">
+          <h1 class="fw-light">Estas en el Lobby!</h1>
+          <p class="lead text-muted">Acá te vas a encontrar con los juegos disponibles hasta la fecha. Proximamente agregaremos más!</p>
+        </div>
+      </div>
+    </section>
+  
+    <div class="album py-5 bg-light">
+      <div class="container">
+  
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+          <div class="col">
+            <div class="card shadow-sm">
+              <img class="bd-placeholder-img card-img-top" width="100%" height="225" src="../../../../assets/lobby/ahorcado.gif" preserveAspectRatio="xMidYMid slice" focusable="false">
+  
+              <div class="card-body">
+                <p class="card-text">Ahorcado.</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-primary btn-lg" (click)="ahorcado()">Jugar!</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card shadow-sm">
+              <img class="bd-placeholder-img card-img-top" width="100%" height="225" src="../../../../assets/lobby/mayor-o-menor.gif" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+  
+              <div class="card-body">
+                <p class="card-text">Mayor o menor.</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-primary btn-lg" (click)="mayorOMenor()">Jugar!</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="card shadow-sm">
+              <img class="bd-placeholder-img card-img-top" width="100%" height="225" src="../../../../assets/lobby/snake.gif" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+              <div class="card-body">
+                <p class="card-text">Snake.</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-primary btn-lg" (click)="snake()">Jugar!</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+          <div class="col">
+            <div class="card shadow-sm">
+              <img class="bd-placeholder-img card-img-top" width="100%" height="225" src="../../../../assets/lobby/trivia.gif" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+              <div class="card-body">
+                <p class="card-text">Trivia.</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-primary btn-lg" (click)="trivia()">Jugar!</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>

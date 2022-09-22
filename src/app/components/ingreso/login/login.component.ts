@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup ,Validators} from '@angular/forms';
-import { LoginService } from 'src/app/services/login.service';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AbstractControl,FormBuilder, FormGroup ,Validators} from '@angular/forms';
+import { Router } from '@angular/router';
+import { LogService } from 'src/app/services/log.service';
+import { UsuarioService } from 'src/app/services/usuario.service';
+import Swal from 'sweetalert2';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-login',
@@ -10,8 +15,15 @@ import { LoginService } from 'src/app/services/login.service';
 export class LoginComponent implements OnInit {
 
   formGroup !: FormGroup;
+  spiner : boolean = false;
 
-  constructor(private loginService : LoginService, private formBuilder : FormBuilder) { }
+  constructor(
+     private formBuilder : FormBuilder,
+     private authService: AngularFireAuth,
+     private router: Router,
+     private logService : LogService,
+     private usuarioService : UsuarioService,
+     private spinnerService : NgxSpinnerService) { }
 
   ngOnInit(): void {
     this.formGroup = this.formBuilder.group({
@@ -21,14 +33,46 @@ export class LoginComponent implements OnInit {
   }
 
   login(){
+    this.spiner = true;
      const email = this.formGroup.controls['email'].value;
      const contraseña = this.formGroup.controls['contraseña'].value;
-     this.loginService.iniciarSesion(email,contraseña);
+     this.authService.signInWithEmailAndPassword(email,contraseña)
+     .then(res =>{
+      this.usuarioService.conectarUsuario(email,true)
+      .then(resp =>{
+        this.spiner = false;
+        this.logService.guardarLog(email,"inicio de sesion");
+        this.router.navigate(['/home']);
+      })
+      .catch(error => {this.spiner=false,this.popUpMensaje('Error',error.message,true)});
+     })
+     .catch(error => {this.spiner=false,this.popUpMensaje('Error',error.message,true)});
   }
 
   accesoRapido(){
     this.formGroup.controls['email'].setValue("ejemplo@a.com");
-    this.formGroup.controls['contraseña'].setValue("123456");
+    this.formGroup.controls['contraseña'].setValue("1234567");
+  }
+
+  private spacesValidator(control : AbstractControl) : null | object{
+    const nombre = <string>control.value;
+    const espacios = nombre.includes(' ');
+    return espacios == true? {contieneEspacios : true} : null;
+  }
+
+  spinner() : void{
+    this.spinnerService.show();
+    setTimeout(() =>{
+      this.spinnerService.hide();
+    },8000);
+  }
+
+  popUpMensaje(titulo : string,mensaje : string,error : boolean){
+    Swal.fire(
+       titulo,
+       mensaje,
+       error ? 'error' : 'success'
+    )
   }
 
 }

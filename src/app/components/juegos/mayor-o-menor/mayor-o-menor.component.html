@@ -1,0 +1,20 @@
+<app-navbar></app-navbar>
+ 
+<div class="container">
+   <div class="offset-md-2 col-md-8 text-center">
+        <div id="snackbar" class="speech-bubble">{{mensajes}}</div>
+        <div class="imagen animated fadeInUp"></div>
+      <div class="card text-center">
+        <div class="card-header">
+            <h5 class="card-title">Ingresa tu numero</h5>
+            <p *ngIf="numeroSecreto != 0 " class="card-text">Recuerda que te quedan <span>{{5 - contador}}</span> intentos, asi que elige con cuidado.</p>
+        </div>
+        <div class="card-body">
+         
+          <input id= "numeroIngresado" placeholder="?" name="numeroIngresado" type="text" maxlength="2" class="form-control text-center display-2" style="width:35%; height:80px; font-size:40px;"/>
+          <h2 [hidden]="ocultarVerificar"><button  *ngIf="numeroSecreto!=0" (click)="verificar()"class="btn btn-success btn-lg">Verificar</button></h2>        
+          <h2><button *ngIf="numeroSecreto==0 " (click)="generarnumero()"  class="btn btn-info btn-lg">Jugar</button></h2>
+        </div>
+      </div>
+    </div>
+  </div>

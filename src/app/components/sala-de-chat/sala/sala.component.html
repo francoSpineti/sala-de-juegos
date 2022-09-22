@@ -1,0 +1,58 @@
+<app-navbar></app-navbar>
+<section class="gradient-custom">
+    <div class="container py-5">
+  
+      <div class="row">
+  
+        <div class="col-md-6 col-lg-5 col-xl-5 mb-4 mb-md-0">
+  
+          <h5 class="font-weight-bold mb-3 text-center text-white">Usuarios Conectados</h5>
+  
+          <div class="card mask-custom" *ngFor="let user of listaUsuarios">
+            <div class="card-body">
+              <ul class="list-unstyled mb-0">
+                <li class="p-2 border-bottom" style="border-bottom: 1px solid rgba(255,255,255,.3) !important;">
+                  <a class="d-flex justify-content-between link-light">
+                    <div class="d-flex flex-row">
+                      <img src={{user.foto}} alt="" class="rounded-circle d-flex align-self-center me-3 shadow-1-strong" width="60">
+                      <div class="pt-1">
+                        <p class="fw-bold mb-0">{{user.tag}}</p>
+                        <p class="small text-white">{{user.email}}</p>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+  
+        <div class="col-md-6 col-lg-7 col-xl-7" id="ej">
+          <ul class="list-unstyled text-white" >
+            <li class="d-flex justify-content-between mb-4" *ngFor="let chat of chats">
+              <div class="card mask-custom w-100">
+                <div class="card-header d-flex justify-content-between p-3"
+                  style="border-bottom: 1px solid rgba(255,255,255,.3);">
+                  <p class="fw-bold mb-0">{{chat.tag}}</p>
+                  <p class="text-light small mb-0"><i class="far fa-clock"></i> {{chat.fechaYHora| date:'dd/MM/yyyy h:mm'}}</p>
+                </div>
+                <div class="card-body" >
+                  <p class="mb-0">
+                    {{chat.mensaje}}
+                  </p>
+                </div>
+              </div>
+              <img src="{{chat.foto}}" alt=""
+                class="rounded-circle d-flex align-self-start ms-3 shadow-1-strong" width="60">
+            </li>
+            <li class="mb-3">
+              <div class="form-outline form-white">
+                <input type="text" class="form-control" (keyup.enter)="enviar()" placeholder="Escriba su mensaje..." [(ngModel)]='mensajeChat.mensaje'>
+              </div>
+            </li>
+            <button type="button" class="btn btn-light btn-lg btn-rounded float-end" (click)="enviar()">Enviar</button>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>

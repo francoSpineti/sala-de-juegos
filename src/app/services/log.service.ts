@@ -12,6 +12,6 @@ export class LogService {
   guardarLog(email : string,accion : string){
     const id = this.afs.createId();
     let log : Log = new Log(id,email,new Date().toLocaleDateString(),new Date().toTimeString(),accion);
-    return this.afs.collection('/logs').doc(id).set(log.toJson());
+    this.afs.collection('/logs').doc(id).set(log.toJson());
   }
 }

@@ -1,36 +1,40 @@
-<div class="container">
-	<div class="screen">	
-		<div class="screen__content">
-			<form [formGroup]="formGroup" (ngSubmit)="login()">
-				<div class="login__field">
-					<i class="login__icon fas fa-user"></i>
-					<input type="email" id="inputEmail" class="login__input" formControlName="email" placeholder="User name / Email"><br>
-					<small class="invalid" *ngIf="formGroup.controls['email'].errors?.['required'] && formGroup.controls['email'].touched">El email es requerido</small>
+<div class="background">
+<section class="text-center text-lg-start">
+	<div class="container py-4 bac caja-login" >
+	  <div class="row g-0 align-items-center">
+		<div class="col-lg-6 mb-5 mb-lg-0">
+		  <div class="card cascading-right" style="
+			  background: hsla(0, 0%, 100%, 0.55);
+			  backdrop-filter: blur(30px);
+			  ">
+			<div class="card-body p-5 shadow-5 text-center">
+			  <h2 class="fw-bold mb-5">Sala de juegos!</h2>
+			  <form [formGroup]="formGroup" (ngSubmit)="login()">
+				<div class="form-outline mb-4">
+				<label class="form-label" for="form3Example3">Email</label>
+				  <input type="email" id="form3Example3" class="form-control" formControlName="email" />
+				 	<small class="invalid" *ngIf="formGroup.controls['email'].errors?.['required'] && formGroup.controls['email'].touched">El email es requerido</small>
 					<small class="invalid" *ngIf="formGroup.controls['email'].errors?.['email'] && formGroup.controls['email'].touched">El formato es invalido</small>
+					<!-- <small class="invalid" *ngIf="formGroup.controls['email'].errors?.['spacesValidator'] && formGroup.controls['email'].touched">El email no puede tener espacios</small> -->
 				</div>
-				<div class="login__field">
-					<i class="login__icon fas fa-lock"></i>
-					<input type="password" id="inputPassword" formControlName="contraseña" class="login__input" placeholder="Password"><br>
-					<small class="invalid" *ngIf="formGroup.controls['contraseña'].errors?.['required'] && formGroup.controls['contraseña'].touched">La contraseña es requerida</small>
+				<div class="form-outline mb-4">
+				<label class="form-label" for="form3Example4">Contraseña</label>
+				  <input type="password" id="form3Example4" class="form-control"  formControlName="contraseña"/> 
+				  	<small class="invalid" *ngIf="formGroup.controls['contraseña'].errors?.['required'] && formGroup.controls['contraseña'].touched">La contraseña es requerida</small>
+					  <!-- <small class="invalid" *ngIf="formGroup.controls['contraseña'].errors?.['spacesValidator'] && formGroup.controls['contraseña'].touched">La contraseña no puede tener espacios</small> -->
 				</div>
-				<button class="button login__submit" [disabled]="formGroup.invalid">
-					<span class="button__text">Ingresar</span>
-					<i class="button__icon fas fa-chevron-right"></i>
-				</button>				
-			</form>
-			<div class="social-login">
-				<button class="button login__submit" routerLink="/registro">
-					<span class="button__text">Registro</span>
-				</button>	
-				<div class="social-icons">
+				<div *ngIf="spiner">
+					<mat-progress-bar mode="indeterminate"></mat-progress-bar>
 				</div>
+				<button type="submit" class="btn btn-primary btn-block mb-4" [disabled]="formGroup.invalid">Ingresar</button>
+				<div class="text-center">
+					<p>No tenes cuenta? <a routerLink="/registro" class="link-info">Registrate acá</a></p>
+				</div>
+			  </form>
 			</div>
+		  </div>
 		</div>
-		<div class="screen__background">
-			<span class="screen__background__shape screen__background__shape4"></span>
-			<span class="screen__background__shape screen__background__shape3"></span>		
-			<span class="screen__background__shape screen__background__shape2"></span>
-			<span class="screen__background__shape screen__background__shape1"></span>
-		</div>		
+	  </div>
 	</div>
+  </section>
 </div>

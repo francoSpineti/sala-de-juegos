@@ -5,24 +5,44 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-
+import { BestScoreManager } from './components/juegos/snake/best-score-manager';
 //componentes
 import { HomeComponent } from './components/home/home.component';
 import { QuienSoyComponent } from './components/quien-soy/quien-soy.component';
+import { EncuestaComponent } from './components/encuesta/encuesta.component';
+import { ErrorComponent } from './components/error/error.component';
 
 //routing
 import { IngresoRoutingModule } from './components/ingreso/ingreso-routing.module';
+import { NavbarModule } from './components/navbar/navbar.module';
 
 // Angular
 import { AngularFireModule } from '@angular/fire/compat/';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 
+//Material
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatListModule } from '@angular/material/list';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatDialogModule } from '@angular/material/dialog';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    QuienSoyComponent
+    QuienSoyComponent,
+    EncuestaComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
@@ -32,9 +52,26 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
     FormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
-    HttpClientModule
+    HttpClientModule,
+    NoopAnimationsModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatMenuModule,
+    MatListModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatAutocompleteModule,
+    MatDividerModule,
+    MatDialogModule,
+    NavbarModule,
+    MatProgressSpinnerModule,
+    MatProgressBarModule,
+    AngularFireStorageModule
   ],
-  providers: [],
+  providers: [BestScoreManager],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

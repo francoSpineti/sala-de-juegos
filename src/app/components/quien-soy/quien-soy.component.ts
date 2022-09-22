@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { QuienSoyService } from 'src/app/services/quien-soy.service';
 
 @Component({
   selector: 'app-quien-soy',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QuienSoyComponent implements OnInit {
 
-  constructor() { }
+  data : any=[];
+
+  constructor(private service : QuienSoyService) { }
 
   ngOnInit(): void {
+    this.infoGit();
+  }
+
+  infoGit(){
+    this.data = this.service.obtenerInfoGit();
+    console.log(this.data);
   }
 
 }

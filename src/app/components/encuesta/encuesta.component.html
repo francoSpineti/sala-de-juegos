@@ -1,0 +1,129 @@
+<app-navbar></app-navbar>
+<br />
+<form [formGroup]="formGroup" (ngSubmit)="guardar()">
+<div class="container">
+  <section class="row">
+    <div class="col-md-12">
+      <h1 class="text-center">Formato de Encuesta de Satisfacción.</h1>
+    </div>
+  </section>
+  <hr><br />
+  <section class="row">
+    <section class="col-md-12">
+      <h3>Datos basicos</h3>
+      <p></p>
+    </section>
+  </section>
+  <section class="row">
+    <section class="col-md-12">
+      <section class="row">
+        <div class="col-md-5">
+          <div class="form-group">
+            <label for="nombre">Nombre:</label>
+            <input type="text" class="form-control" id="nombreCompleto" placeholder="Nombre" formControlName="nombre">
+            <small class="invalid" *ngIf="formGroup.controls['nombre'].errors?.['required'] && formGroup.controls['nombre'].touched">El nombre es requerido</small>
+            <small class="invalid" *ngIf="formGroup.controls['nombre'].errors?.['spacesValidator'] && formGroup.controls['nombre'].touched">El nombre tiene espacios</small>
+          </div>
+        </div>
+        <div class="col-md-5">
+          <div class="form-group">
+            <label for="apellido">Apellido:</label>
+            <input type="text" class="form-control" id="apellidoCompleto" placeholder="Apellido" formControlName="apellido">
+            <small class="invalid" *ngIf="formGroup.controls['apellido'].errors?.['required'] && formGroup.controls['apellido'].touched">El apellido es requerido</small>
+            <small class="invalid" *ngIf="formGroup.controls['apellido'].errors?.['spacesValidator'] && formGroup.controls['apellido'].touched">El nombre tiene espacios</small>
+          </div>
+        </div>
+      </section>
+      <section class="row">
+        <div class="col-md-3">
+          <label for="telefono">Telefono:</label>
+          <input type="text" class="form-control" id="telefono" placeholder="Numero de Telefono/Celular" formControlName="telefono"/>
+          <small class="invalid" *ngIf="formGroup.controls['telefono'].errors?.['required'] && formGroup.controls['telefono'].touched">El telefono es requerido</small>
+          <small class="invalid" *ngIf="formGroup.controls['telefono'].errors?.['pattern'] || formGroup.controls['telefono'].errors?.['maxlength'] || formGroup.controls['telefono'].errors?.['minlength'] && formGroup.controls['telefono'].touched">La cantidad debe ser de 10 digitos</small>
+        </div>
+        <div class="col-md-2">
+          <div class="form_group">
+            <label for="edadEncuestado">Edad:</label>
+            <input type="number" class="form-control" id="edadEncuestado" placeholder="Edad" formControlName="edad"/>
+            <small class="invalid" *ngIf="formGroup.controls['edad'].errors?.['required'] && formGroup.controls['edad'].touched">La edad es requerida</small>
+            <small class="invalid" *ngIf="formGroup.controls['edad'].errors?.['min'] || formGroup.controls['edad'].errors?.['max'] && formGroup.controls['edad'].touched">La edad debe estar entre 18 o 99 años</small>
+          </div>
+        </div>
+        <div class="col-md-5">
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" class="form-control" id="emailCompleto" placeholder="Email" formControlName="email">
+            <small class="invalid" *ngIf="formGroup.controls['email'].errors?.['required'] && formGroup.controls['email'].touched">El email es requerido</small>
+            <small class="invalid" *ngIf="formGroup.controls['email'].errors?.['email'] && formGroup.controls['email'].touched">El formato es invalido</small>
+          </div>
+        </div>
+      </section>
+    </section>
+  </section>
+  <hr />
+  <br />
+  <!--  Preguntas  -->
+  <section class="row">
+    <div class="col-md-12">
+      <h3>Preguntas</h3>
+      <p></p>
+    </div>
+  </section>
+  <!--  PREGUNTA 1  -->
+  <section class="row">
+    <div class="col-md-12">
+      <section class="row">
+        <div class="col-md-8">
+          <p>1 - ¿Cómo calificaría su experiencia global respecto a los servicios que brinda la aplicación?</p>
+        </div>
+        <div class="col-md-4">
+          <select class="form-control" id="pregunta1" formControlName="pregunta1">
+          <option value="Muy Buena" >Muy Buena</option>
+          <option value="Buena" >Buena</option>
+          <option value="Regular" >Regular</option>
+          <option value="Mala" >Mala</option>
+          <option value="Muy Mala" >Muy Mala</option>
+          <option value="No Responde" >No Responde</option>
+        </select>
+        </div>
+      </section>
+    </div>
+  </section><br />
+  <!--  PREGUNTA 2  -->
+  <section class="row">
+    <div class="col-md-12">
+      <section class="row">
+        <div class="col-md-8">
+          <p>2 - ¿Que le agregarias a la aplicación?</p>
+        </div>
+        <div class="col-md-4">
+          <input type="text" class="form-control" id="pregunta2" formControlName="pregunta2">
+        </div>
+      </section>
+    </div>
+  </section><br />
+  <!--  PREGUNTA 3  -->
+  <section class="row">
+    <div class="col-md-6">
+      <p>3 - ¿Recomendaria a sus familiares y amigos esta app?</p>
+    </div>
+    <div class="col-md-2">
+      <label class="radio">
+      <input type="radio" name="pregunta3" id="pregunta3" value="SI" formControlName="pregunta3"> Si
+    </label>
+    </div>
+    <div class="col-md-2">
+      <label class="radio">
+      <input type="radio" name="pregunta3" id="pregunta3" value="NO" formControlName="pregunta3"> No
+    </label>
+    </div>
+  </section><br>
+  <hr />
+  <section class="row">
+    <div class="col-md-12">
+      <button type="submit" class="btn btn-info" id="saveForm" [disabled]="formGroup.invalid">Guardar Encuesta</button>
+    </div>
+  </section>
+</div>
+</form>
+<br /><br />
