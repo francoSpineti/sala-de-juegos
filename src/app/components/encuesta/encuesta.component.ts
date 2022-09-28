@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Encuesta } from 'src/app/clases/encuesta';
 import { EncuestaService } from 'src/app/services/encuesta.service';
 import { DialogoComponent } from '../juegos/dialogo/dialogo.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-encuesta',
@@ -21,7 +22,6 @@ export class EncuestaComponent implements OnInit {
       'nombre' : ['',[Validators.required,this.spacesValidator]],
       'apellido' : ['',[Validators.required,this.spacesValidator]],
       'edad' : ['',[Validators.required,Validators.min(18),Validators.max(99)]],
-      'email' : ['',[Validators.required,Validators.email,this.spacesValidator]],
       'telefono' : ['',[Validators.required,Validators.pattern("^[0-9]*$"),Validators.minLength(10),Validators.maxLength(10)]],
       'pregunta1' : ['',Validators.required],
       'pregunta2' : ['',[Validators.required,this.spacesValidator]],
@@ -30,16 +30,12 @@ export class EncuestaComponent implements OnInit {
   }
 
   guardar(){
-    let encuesta = new Encuesta(this.formGroup.controls['nombre'].value,this.formGroup.controls['apellido'].value,
-    this.formGroup.controls['email'].value, this.formGroup.controls['edad'].value, parseInt(this.formGroup.controls['telefono'].value),
+    let obj = JSON.parse(localStorage.getItem('user')!);
+    let encuesta = new Encuesta(this.formGroup.controls['nombre'].value,this.formGroup.controls['apellido'].value,obj.email,
+    this.formGroup.controls['edad'].value, parseInt(this.formGroup.controls['telefono'].value),
     this.formGroup.controls['pregunta1'].value,this.formGroup.controls['pregunta2'].value,this.formGroup.controls['pregunta3'].value);
-    this.service.guardar(encuesta.toJson());
-    this.dialog.open(DialogoComponent,{
-      data: {
-        titulo: 'Gracias!',
-        mensaje: 'La encuesta se guardo con exito!'
-      }
-    });
+    this.service.guardar(encuesta);
+    this.popUpMensaje('Encuesta guardada con éxito!','Gracias por completar la encuesta.',false);
     this.limpiar();
   }
 
@@ -57,6 +53,14 @@ export class EncuestaComponent implements OnInit {
     this.formGroup.controls['pregunta1'].setValue(''); 
     this.formGroup.controls['pregunta2'].setValue(''); 
     this.formGroup.controls['pregunta3'].setValue('');
+  }
+
+  popUpMensaje(titulo : string,mensaje : string,error : boolean){
+    Swal.fire(
+       titulo,
+       mensaje,
+       error ? 'error' : 'success'
+    )
   }
 
 }

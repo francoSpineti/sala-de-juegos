@@ -18,7 +18,6 @@ export const COLORS = {
 
 export const GAME_MODES = {
   classic: 'Classic',
-  no_walls: 'No Walls',
   obstacles: 'Obstacles'
 };
 

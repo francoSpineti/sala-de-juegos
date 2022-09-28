@@ -11,10 +11,15 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 export class NavbarComponent implements OnInit {
 
   tag : string ="";
-  constructor(private logService : LogService, private usuarioService : UsuarioService) { }
+  imagen : string ="";
+  isAdmin !: boolean;
+  constructor(private logService : LogService, private usuarioService : UsuarioService) {
+    this.isAdmin = this.usuarioService.isAdmin();
+  }
 
   ngOnInit(): void {
-   // this.tag = this.obtenerTagUsuarioLogueado();
+    this.tag = this.obtenerTagUsuarioLogueado();
+    this.imagen = this.obtenerImagenUsuarioLogueado();
   }
 
   obtenerTagUsuarioLogueado(){
@@ -22,10 +27,15 @@ export class NavbarComponent implements OnInit {
     return obj.tag;
   }
 
+  obtenerImagenUsuarioLogueado(){
+    let obj = JSON.parse(localStorage.getItem('user')!);
+    return obj.foto;
+  }
+
   cerrarSesion(){
     this.logService.guardarLog(this.usuarioService.obtenerEmailUsuarioLogueado(),"cerro sesion");
     let obj = JSON.parse(localStorage.getItem('user')!);
-    let aux : Usuario = new Usuario(obj.id,obj.email,obj.tag,false,obj.foto);
+    let aux : Usuario = new Usuario(obj.id,obj.email,obj.tag,false,obj.foto,obj.perfil);
     this.usuarioService.cerrarSesion(aux);
   }
 

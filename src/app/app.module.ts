@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { BestScoreManager } from './components/juegos/snake/best-score-manager';
+
 //componentes
 import { HomeComponent } from './components/home/home.component';
 import { QuienSoyComponent } from './components/quien-soy/quien-soy.component';
@@ -35,6 +35,10 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatDialogModule } from '@angular/material/dialog';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import { VerEncuestasComponent } from './components/ver-encuestas/ver-encuestas.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +46,8 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     HomeComponent,
     QuienSoyComponent,
     EncuestaComponent,
-    ErrorComponent
+    ErrorComponent,
+    VerEncuestasComponent
   ],
   imports: [
     BrowserModule,
@@ -69,9 +74,12 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     NavbarModule,
     MatProgressSpinnerModule,
     MatProgressBarModule,
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    MatTabsModule,
+    MatTableModule,
+    MatPaginatorModule
   ],
-  providers: [BestScoreManager],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

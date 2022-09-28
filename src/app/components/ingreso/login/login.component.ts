@@ -41,16 +41,28 @@ export class LoginComponent implements OnInit {
       this.usuarioService.conectarUsuario(email,true)
       .then(resp =>{
         this.spiner = false;
+        this.formGroup.reset();
         this.logService.guardarLog(email,"inicio de sesion");
         this.router.navigate(['/home']);
       })
-      .catch(error => {this.spiner=false,this.popUpMensaje('Error',error.message,true)});
+      .catch(error => {
+        this.spiner=false;
+        this.formGroup.reset();
+        this.popUpMensaje('Error',error.message,true)});
      })
-     .catch(error => {this.spiner=false,this.popUpMensaje('Error',error.message,true)});
+     .catch(error => {
+      this.spiner=false;
+      this.formGroup.reset();
+      this.popUpMensaje('Error',error.message,true)});
   }
 
-  accesoRapido(){
-    this.formGroup.controls['email'].setValue("ejemplo@a.com");
+  accesoRapidoJugador(){
+    this.formGroup.controls['email'].setValue("ejemplo@gmail.com");
+    this.formGroup.controls['contraseña'].setValue("1234567");
+  }
+  
+  accesoRapidoAdmin(){
+    this.formGroup.controls['email'].setValue("admin@gmail.com");
     this.formGroup.controls['contraseña'].setValue("1234567");
   }
 

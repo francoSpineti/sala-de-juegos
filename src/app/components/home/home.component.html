@@ -1,3 +1,65 @@
-<!-- <app-nav></app-nav> -->
-
 <app-navbar></app-navbar>
+
+<div class="centrarTabla" style="height: 45px;">
+    <div class="table-wrapper-scroll-y my-custom-scrollbar" >
+      <h4> Lista de Puntajes </h4>
+    <mat-tab-group>
+      <mat-tab label="Ahorcado">
+        <table ng-table="tableParams" border="1" class="table table-bordered table-striped mb-0">
+          <tbody>
+            <th>Puntaje</th>
+            <th>Tag</th>
+            <th>Email</th>
+           <tr *ngFor="let aux of tablaAhorcado">
+            <td>{{aux.puntaje}}</td>
+            <td>{{aux.tag}}</td>
+            <td>{{aux.email}}</td>
+          </tr>
+        </tbody>
+        </table>
+      </mat-tab>
+      <mat-tab label="Mayor O Menor">
+        <table ng-table="tableParams" class="table table-bordered table-striped mb-0">
+            <tbody>
+              <th>Puntaje</th>
+              <th>Tag</th>
+              <th>Email</th>
+             <tr *ngFor="let aux of tablaMayorOMenor">
+              <td>{{aux.puntaje}}</td>
+              <td>{{aux.tag}}</td>
+              <td>{{aux.email}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </mat-tab>
+      <mat-tab label="Trivia">
+        <table ng-table="tableParams" class="table table-bordered table-striped mb-0">
+          <tbody>
+            <th>Puntaje</th>
+            <th>Tag</th>
+            <th>Email</th>
+           <tr *ngFor="let aux of tablaTrivia">
+            <td>{{aux.puntaje}}</td>
+            <td>{{aux.tag}}</td>
+            <td>{{aux.email}}</td>
+          </tr>
+        </tbody>
+        </table>
+      </mat-tab>
+      <mat-tab label="Snake">
+        <table ng-table="tableParams" class="table table-bordered table-striped mb-0">
+          <tbody>
+            <th>Puntaje</th>
+            <th>Tag</th>
+            <th>Email</th>
+           <tr *ngFor="let aux of tablaSnake">
+            <td>{{aux.puntaje}}</td>
+            <td>{{aux.tag}}</td>
+            <td>{{aux.email}}</td>
+          </tr>
+        </tbody>
+        </table>
+      </mat-tab>
+    </mat-tab-group>
+    </div>
+</div>    

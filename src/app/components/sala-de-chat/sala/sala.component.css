@@ -22,4 +22,5 @@
         height: 400px;
         width: 900px;
         overflow-y: scroll;
+        margin-right: -100%;
       }

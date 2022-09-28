@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Puntos } from 'src/app/clases/puntos';
 import { PuntajeService } from 'src/app/services/puntaje.service';
 import Swal  from 'sweetalert2';
+import { DialogoEncuestaComponent } from '../dialogo-encuesta/dialogo-encuesta.component';
 
 @Component({
   selector: 'app-ahorcado',
@@ -20,7 +22,7 @@ export class AhorcadoComponent implements OnInit {
   numeroDeAciertos: number = 0;
   botones!: Array<{letra: string, estado: string}>;
 
-  constructor(private router: Router,private puntajeService : PuntajeService) {}
+  constructor(private router: Router,private puntajeService : PuntajeService,private dialog: MatDialog) {}
 
   ngOnInit() {
       this.initGame();
@@ -43,7 +45,6 @@ export class AhorcadoComponent implements OnInit {
       for (let i = 0; i < this.palabraAAdivinar.length; i++) {
           this.palabraAdivinadaPorAhora += '_';
       }
-      //console.info('Respuesta:', this.palabraAAdivinar);
   }
 
   letraPresionada(boton: {letra: string, estado: string}) {   
@@ -53,18 +54,22 @@ export class AhorcadoComponent implements OnInit {
       if (!this.letraAcertada(boton.letra)) {
           if (this.numeroDeFallos < 6) {
               this.aumentarFallos(boton.letra);
-              if(this.numeroDeFallos == 6) 
-                  this.mostrarMensajeDePerdedor();
+              if(this.numeroDeFallos == 6){
+                this.mostrarEncuesta();
+                this.mostrarMensajeDePerdedor();
+              }
           }
-          else
-              this.mostrarMensajeDePerdedor();
-
+          else{
+            this.mostrarEncuesta();
+            this.mostrarMensajeDePerdedor();
+          }
           boton.estado = 'noAcertado';
       }
       else {
           if(this.numeroDeAciertos == this.palabraAAdivinar.length) {
               this.cargarPuntaje(10);
               this.mostrarMensajeDeGanador();
+              this.mostrarEncuesta();
           }
           boton.estado = 'acertado';
       }
@@ -135,6 +140,19 @@ export class AhorcadoComponent implements OnInit {
 
   cargarPuntaje(puntaje : number){
     this.puntajeService.guardarPuntaje("Ahorcado",puntaje);
+  }
+
+  mostrarEncuesta(){
+    let numeroEncuesta = Math.round(Math.random()*100);
+
+    if(numeroEncuesta == 48){
+      this.dialog.open(DialogoEncuestaComponent,{
+        data: {
+          titulo: 'Nos interesa tu opinión! Completas una encuesta?',
+          mensaje: 'Ir a Encuesta!'
+        }
+      });
+    }
   }
 
 }

@@ -49,14 +49,6 @@
             <small class="invalid" *ngIf="formGroup.controls['edad'].errors?.['min'] || formGroup.controls['edad'].errors?.['max'] && formGroup.controls['edad'].touched">La edad debe estar entre 18 o 99 años</small>
           </div>
         </div>
-        <div class="col-md-5">
-          <div class="form-group">
-            <label for="email">Email:</label>
-            <input type="email" class="form-control" id="emailCompleto" placeholder="Email" formControlName="email">
-            <small class="invalid" *ngIf="formGroup.controls['email'].errors?.['required'] && formGroup.controls['email'].touched">El email es requerido</small>
-            <small class="invalid" *ngIf="formGroup.controls['email'].errors?.['email'] && formGroup.controls['email'].touched">El formato es invalido</small>
-          </div>
-        </div>
       </section>
     </section>
   </section>

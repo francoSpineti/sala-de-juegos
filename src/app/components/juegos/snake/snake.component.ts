@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { BestScoreManager } from '../snake/best-score-manager';
+import { MatDialog } from '@angular/material/dialog';
+import { PuntajeService } from 'src/app/services/puntaje.service';
+import { DialogoEncuestaComponent } from '../dialogo-encuesta/dialogo-encuesta.component';
 import { CONTROLS, COLORS, BOARD_SIZE, GAME_MODES } from '../snake/constants';
 
 @Component({
@@ -42,7 +44,7 @@ export class SnakeComponent implements OnInit {
     y: -1
   };
 
-  constructor(private bestScoreService: BestScoreManager) {
+  constructor(private dialog: MatDialog,private puntajeService : PuntajeService) {
     this.setBoard();
   }
 
@@ -80,9 +82,8 @@ export class SnakeComponent implements OnInit {
 
     if (this.default_mode === 'classic' && this.boardCollision(newHead)) {
       return this.gameOver();
-    } else if (this.default_mode === 'no_walls') {
-      this.noWallsTransition(newHead);
-    } else if (this.default_mode === 'obstacles') {
+    } 
+    else if (this.default_mode === 'obstacles') {
       this.noWallsTransition(newHead);
       if (this.obstacleCollision(newHead)) {
         return this.gameOver();
@@ -213,12 +214,13 @@ export class SnakeComponent implements OnInit {
     let me = this;
 
     if (this.score > this.best_score) {
-      this.bestScoreService.store(this.score);
       this.best_score = this.score;
       this.newBestScore = true;
+      this.puntajeService.guardarPuntaje('snake',this.best_score);
+      this.mostrarEncuesta();
     }
-   /*   this.guardarResultado();
-     this.mostrarEncuesta(); */
+     this.puntajeService.guardarPuntaje('snake',this.score);
+     this.mostrarEncuesta();
     setTimeout(() => {
       me.isGameOver = false;
     }, 500);
@@ -278,4 +280,17 @@ export class SnakeComponent implements OnInit {
   ngOnInit(): void {
   }
   
+  mostrarEncuesta(){
+    let numeroEncuesta = Math.round(Math.random()*100);
+
+    if(numeroEncuesta == 48){
+      this.dialog.open(DialogoEncuestaComponent,{
+        data: {
+          titulo: 'Nos interesa tu opinión! Completas una encuesta?',
+          mensaje: 'Ir a Encuesta!'
+        }
+      });
+    }
+  }
+
 }

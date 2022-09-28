@@ -5,13 +5,15 @@ export class Usuario{
     tag ?: string;
     online ?: boolean;
     foto ?: string;
+    perfil ?: string;
 
-    constructor(id : string, email : string,tag ?: string, online ?: boolean,foto ?: string){
+    constructor(id : string, email : string,tag ?: string, online ?: boolean,foto ?: string, perfil ?: string){
         this.id = id;
         this.email = email;
         this.tag = tag;
         this.online = online;
         this.foto = foto;
+        this.perfil = perfil;
     }
 
     toJson():any{
@@ -20,7 +22,8 @@ export class Usuario{
             email : this.email,
             tag : this.tag,
             online : this.online,
-            foto : this.foto
+            foto : this.foto,
+            perfil : this.perfil
         }
         return json;
     }

@@ -11,10 +11,6 @@ export class QuienSoyService {
   git = "https://api.github.com/users/francoSpineti";
 
   obtenerInfoGit(){
-    let info : Array<any> = [];
-    this.http.get(this.git).subscribe(res => {
-        info.push(JSON.parse(JSON.stringify(res)));
-    });
-    return info;
+   return this.http.get(this.git);
   }
 }

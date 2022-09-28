@@ -1,0 +1,30 @@
+<app-navbar></app-navbar>
+
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Apellido</th>
+        <th scope="col">Email</th>
+        <th scope="col">Edad</th>
+        <th scope="col">Telefono</th>
+        <th scope="col">Respuesta pregunta 1</th>
+        <th scope="col">Respuesta pregunta 2</th>
+        <th scope="col">Respuesta pregunta 3</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let aux of data ;let indexOfelement=index;">
+        <th scope="row">{{indexOfelement}}</th>
+        <td>{{aux.nombre}}</td>
+        <td>{{aux.apellido}}</td>
+        <td>{{aux.email}}</td>
+        <td>{{aux.edad}}</td>
+        <td>{{aux.telefono}}</td>
+        <td>{{aux.pregunta1}}</td>
+        <td>{{aux.pregunta2}}</td>
+        <td>{{aux.pregunta3}}</td>
+      </tr>
+    </tbody>
+  </table>

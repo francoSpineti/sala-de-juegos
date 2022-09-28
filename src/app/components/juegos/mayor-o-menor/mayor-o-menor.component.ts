@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { PuntajeService } from 'src/app/services/puntaje.service';
+import { DialogoEncuestaComponent } from '../dialogo-encuesta/dialogo-encuesta.component';
 
 @Component({
   selector: 'app-mayor-o-menor',
@@ -16,7 +18,7 @@ export class MayorOMenorComponent implements OnInit {
   usuarioLogueado : any;
   gano !: boolean;
 
-  constructor(private puntajeService : PuntajeService) { }
+  constructor(private puntajeService : PuntajeService,private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.contador = 0;
@@ -31,6 +33,7 @@ export class MayorOMenorComponent implements OnInit {
     if (parseInt(this.numeroIngresado) === this.numeroSecreto){
       this.puntajeService.guardarPuntaje("mayorOMenor",25);
       this.MostarMensaje("GANASTE!",true);
+      this.mostrarEncuesta();
       this.numeroSecreto=0;
     }else{
       let mensaje:string;
@@ -94,6 +97,19 @@ export class MayorOMenorComponent implements OnInit {
       return "Te falta";
     }
     return "Te pasate";
+  }
+
+  mostrarEncuesta(){
+    let numeroEncuesta = Math.round(Math.random()*100);
+
+    if(numeroEncuesta == 48){
+      this.dialog.open(DialogoEncuestaComponent,{
+        data: {
+          titulo: 'Nos interesa tu opinión! Completas una encuesta?',
+          mensaje: 'Ir a Encuesta!'
+        }
+      });
+    }
   }
 
 }

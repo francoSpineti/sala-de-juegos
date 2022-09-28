@@ -8,17 +8,14 @@ import { QuienSoyService } from 'src/app/services/quien-soy.service';
 })
 export class QuienSoyComponent implements OnInit {
 
-  data : any=[];
+  data : any;
 
   constructor(private service : QuienSoyService) { }
 
   ngOnInit(): void {
-    this.infoGit();
-  }
-
-  infoGit(){
-    this.data = this.service.obtenerInfoGit();
-    console.log(this.data);
+    this.service.obtenerInfoGit().subscribe(ref =>{
+      this.data = JSON.parse(JSON.stringify(ref));  
+    });
   }
 
 }

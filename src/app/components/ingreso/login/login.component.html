@@ -15,18 +15,18 @@
 				  <input type="email" id="form3Example3" class="form-control" formControlName="email" />
 				 	<small class="invalid" *ngIf="formGroup.controls['email'].errors?.['required'] && formGroup.controls['email'].touched">El email es requerido</small>
 					<small class="invalid" *ngIf="formGroup.controls['email'].errors?.['email'] && formGroup.controls['email'].touched">El formato es invalido</small>
-					<!-- <small class="invalid" *ngIf="formGroup.controls['email'].errors?.['spacesValidator'] && formGroup.controls['email'].touched">El email no puede tener espacios</small> -->
 				</div>
 				<div class="form-outline mb-4">
 				<label class="form-label" for="form3Example4">Contraseña</label>
 				  <input type="password" id="form3Example4" class="form-control"  formControlName="contraseña"/> 
 				  	<small class="invalid" *ngIf="formGroup.controls['contraseña'].errors?.['required'] && formGroup.controls['contraseña'].touched">La contraseña es requerida</small>
-					  <!-- <small class="invalid" *ngIf="formGroup.controls['contraseña'].errors?.['spacesValidator'] && formGroup.controls['contraseña'].touched">La contraseña no puede tener espacios</small> -->
 				</div>
-				<div *ngIf="spiner">
-					<mat-progress-bar mode="indeterminate"></mat-progress-bar>
-				</div>
+				<div class="spinner-border text-secondary" role="status" *ngIf="spiner"></div><br>
 				<button type="submit" class="btn btn-primary btn-block mb-4" [disabled]="formGroup.invalid">Ingresar</button>
+				<br>
+				<button type="submit" class="btn btn-primary btn-block mb-4"(click)="accesoRapidoAdmin()" >Acceso Rapido Admin</button>
+				<br>
+				<button type="submit" class="btn btn-primary btn-block mb-4"(click)="accesoRapidoJugador()" >Acceso Rapido Jugador</button>
 				<div class="text-center">
 					<p>No tenes cuenta? <a routerLink="/registro" class="link-info">Registrate acá</a></p>
 				</div>

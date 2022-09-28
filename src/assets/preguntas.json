@@ -69,7 +69,7 @@
                     "text": "number?"
                 }
             ],
-            "explanation": "number[] es otra forma de escribir Array<number> en TypeScript"
+            "explanation": "number[] es otra forma de escribir Array<number> en TypeScript."
         },
         {
             "questionText": "¿En cuál de estos una clase toma parámetros?",
@@ -87,7 +87,7 @@
                     "text": "subscribe"
                 }
             ],
-            "explanation": "una clase utiliza un constructor para tomar parámetros"
+            "explanation": "una clase utiliza un constructor para tomar parámetros."
         },
         {
             "questionText": "¿Que NO es un modificador de acceso?",
@@ -108,7 +108,7 @@
             "explanation": "async no se usa como un tipo de modificador de acceso en TypeScript."
         },
         {
-            "questionText": "Which keyword allows us to share information between files in TypeScript?",
+            "questionText": "¿Qué palabra clave nos permite compartir información entre archivos en TypeScript?",
             "options": [{
                     "text": "import"
                 },
@@ -123,10 +123,10 @@
                     "text": "constructor"
                 }
             ],
-            "explanation": "the export keyword allows for the information to be transmitted between files"
+            "explanation": "la palabra clave export permite que la información se transmita entre archivos."
         },
         {
-            "questionText": "Which is an array method to generate a new array based on a condition?",
+            "questionText": "¿Cuál es un método de matriz para generar una nueva matriz basada en una condición?",
             "options": [{
                     "text": "filter",
                     "correct": true
@@ -141,12 +141,12 @@
                     "text": "enum"
                 }
             ],
-            "explanation": "filter is a method used to conditionally create a new array"
+            "explanation": "filter es un método utilizado para crear condicionalmente una nueva matriz."
         },
         {
-            "questionText": "How is a property accessible within a class?",
+            "questionText": "¿Cómo se puede acceder a una propiedad dentro de una clase?",
             "options": [{
-                    "text": "Using this.propertyName",
+                    "text": "Usando this.propertyName",
                     "correct": true
                 },
                 {
@@ -156,10 +156,10 @@
                     "text": "Destructuring"
                 },
                 {
-                    "text": "Arrow function"
+                    "text": "Funcion flecha"
                 }
             ],
-            "explanation": "this.propertyName is the way to access a specific property within a class"
+            "explanation": "this.propertyName es la forma de acceder a una propiedad específica dentro de una clase."
         }
     ]
 }

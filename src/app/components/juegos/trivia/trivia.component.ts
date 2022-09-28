@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { TriviaService } from 'src/app/services/trivia.service';
 import { interval } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogoEncuestaComponent } from '../dialogo-encuesta/dialogo-encuesta.component';
+import { PuntajeService } from 'src/app/services/puntaje.service';
 
 @Component({
   selector: 'app-trivia',
@@ -18,7 +21,7 @@ export class TriviaComponent implements OnInit {
   interval$: any;
   progress: string = "0";
   isQuizCompleted : boolean = false;
-  constructor(private triviaService: TriviaService) { }
+  constructor(private triviaService: TriviaService,private dialog: MatDialog,private puntajeService : PuntajeService) { }
 
   ngOnInit(): void {
     this.getAllQuestions();
@@ -41,6 +44,8 @@ export class TriviaComponent implements OnInit {
     if(currentQno === this.questionList.length){
       this.isQuizCompleted = true;
       this.stopCounter();
+      this.puntajeService.guardarPuntaje('trivia',this.points);
+      this.mostrarEncuesta();
     }
     if (option.correct) {
       this.points += 10;
@@ -59,7 +64,6 @@ export class TriviaComponent implements OnInit {
         this.resetCounter();
         this.getProgressPercent();
       }, 1000);
-
       this.points -= 10;
     }
   }
@@ -98,7 +102,19 @@ export class TriviaComponent implements OnInit {
   getProgressPercent() {
     this.progress = ((this.currentQuestion / this.questionList.length) * 100).toString();
     return this.progress;
+  }
 
+  mostrarEncuesta(){
+    let numeroEncuesta = Math.round(Math.random()*100);
+
+    if(numeroEncuesta == 48){
+      this.dialog.open(DialogoEncuestaComponent,{
+        data: {
+          titulo: 'Nos interesa tu opinión! Completas una encuesta?',
+          mensaje: 'Ir a Encuesta!'
+        }
+      });
+    }
   }
 
 }

@@ -1,16 +1,16 @@
-import { Usuario } from "./usuario";
-
 export class Puntos{
 
-    private id !: string;
-    private nombreJuego !: string;
-    private usuario !: string;
-    private puntaje !: number;
+    id !: string;
+    nombreJuego !: string;
+    email !: string;
+    tag !: string;
+    puntaje !: number;
 
-    constructor(id : string, nombreJuego : string, usuario : string, puntaje : number){
+    constructor(id : string, nombreJuego : string, email : string, tag : string, puntaje : number){
         this.id = id,
         this.nombreJuego = nombreJuego,
-        this.usuario = usuario,
+        this.email = email,
+        this.tag = tag,
         this.puntaje = puntaje
     }
 
@@ -18,7 +18,8 @@ export class Puntos{
         const json={
             id : this.id,
             nombreJuego : this.nombreJuego,
-            usuario : this.usuario,
+            email : this.email,
+            tag : this.tag,
             puntaje : this.puntaje
         }
         return json;

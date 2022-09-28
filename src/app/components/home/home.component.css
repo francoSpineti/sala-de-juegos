@@ -2,4 +2,19 @@
 body {
     min-height: 75rem;
   }
-  
+  .centraTabla{
+    width: 100px;
+    margin: 0 auto;
+    align : center;
+    height : 5px;
+  }
+  .my-custom-scrollbar {
+    position: relative;
+    height: 250px;
+    overflow: auto;
+    width: 1000px;
+    margin: 0 auto;  
+    }
+    .table-wrapper-scroll-y {
+    display: block;
+    }
